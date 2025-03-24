@@ -7,7 +7,8 @@ extends Control
 @export var image_a : Texture2D
 @export var image_b : Texture2D
 @export var image_c : Texture2D
-@export_range(0.1, 0.5, 0.05) var hue_threshold : float = 0.25
+@export_range(0.1, 0.5, 0.01) var hue_threshold : float = 0.25
+@export_range(0.0, 2.0, 0.01) var gray_threshold : float = 1.1
 
 @onready var color_square_preset : ColorRect = $Vert/Top/Colors/ColorSquare
 @onready var color_square_list : Control = $Vert/Top/Colors
@@ -117,7 +118,9 @@ func closest_hue(target : Color, pool : PackedColorArray) -> Color:
 	var result : Color = pool[0]
 	
 	var target_hue : float = target.h
-	var target_luminance : float = target.get_luminance()
+	var target_sat : float = target.s
+	var target_val : float = target.v
+	#var grayscale : bool = target_sat + target_val <= 1.0
 	var smallest_difference : float = 4096
 	var largest_difference : float = 0.0
 	var color_stats : Array = []
@@ -132,10 +135,14 @@ func closest_hue(target : Color, pool : PackedColorArray) -> Color:
 	var threshold : float = lerpf(smallest_difference, largest_difference, hue_threshold)
 	smallest_difference = 4096
 	for stat in color_stats:
-		if stat[1] <= threshold:
-			var c_luminance : float = stat[0].get_luminance()
-			var diff : float = min(absf(target_luminance - c_luminance), 2 - absf(target_luminance - c_luminance))
-			if diff < smallest_difference:
+		var c_sat_val : float = stat[0].s + stat[0].v
+		var t_sat_val : float = target.s + target.v
+		var diff : float = min(absf(t_sat_val - c_sat_val), 2 - absf(t_sat_val - c_sat_val))
+		if diff < smallest_difference:
+			if t_sat_val <= gray_threshold and c_sat_val <= gray_threshold:
+				smallest_difference = diff
+				result = stat[0]
+			elif stat[1] <= threshold:
 				smallest_difference = diff
 				result = stat[0]
 	if apply_alpha:
