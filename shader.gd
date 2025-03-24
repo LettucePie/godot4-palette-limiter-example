@@ -13,8 +13,6 @@ extends Control
 @export var image_b : Texture
 @export var image_c : Texture
 
-@onready var color_square_preset : ColorRect = $Vert/Colors/ColorSquare
-@onready var color_square_list : Control = $Vert/Colors
 @onready var result_a_node : TextureRect = $Vert/Work/SampleA/AfterImage
 @onready var result_b_node : TextureRect = $Vert/Work/SampleB/AfterImage
 @onready var result_c_node : TextureRect = $Vert/Work/SampleC/AfterImage

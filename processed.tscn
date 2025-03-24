@@ -17,6 +17,7 @@ color_palette = PackedColorArray(0.101961, 0.109804, 0.172549, 1, 0.364706, 0.15
 image_a = ExtResource("2_07txb")
 image_b = ExtResource("3_41eln")
 image_c = ExtResource("4_ccmch")
+hue_threshold = 0.15
 
 [node name="Vert" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,6 +46,11 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 6
 text = "Prioritize Hue"
+
+[node name="AlphaToggle" type="CheckButton" parent="Vert/Top"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Apply Alpha"
 
 [node name="Work" type="HBoxContainer" parent="Vert"]
 layout_mode = 2
@@ -145,3 +151,6 @@ size_flags_vertical = 3
 texture = ExtResource("4_ccmch")
 expand_mode = 1
 stretch_mode = 5
+
+[connection signal="toggled" from="Vert/Top/HueToggle" to="." method="toggle_hue"]
+[connection signal="toggled" from="Vert/Top/AlphaToggle" to="." method="toggle_alpha"]
