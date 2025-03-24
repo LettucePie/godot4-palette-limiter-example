@@ -2,6 +2,7 @@ extends Control
 ## Processed method for Palette Limiting
 ## LettucePie
 
+
 @export var color_palette : PackedColorArray
 @export var image_a : Texture2D
 @export var image_b : Texture2D
@@ -32,7 +33,7 @@ var apply_alpha : bool = false
 func _ready():
 	set_before()
 	build_color_squares()
-	build_images()
+	call_deferred("build_images")
 
 
 func set_before():
@@ -116,6 +117,7 @@ func closest_hue(target : Color, pool : PackedColorArray) -> Color:
 	var result : Color = pool[0]
 	
 	var target_hue : float = target.h
+	var target_luminance : float = target.get_luminance()
 	var smallest_difference : float = 4096
 	var largest_difference : float = 0.0
 	var color_stats : Array = []
@@ -128,12 +130,11 @@ func closest_hue(target : Color, pool : PackedColorArray) -> Color:
 			largest_difference = diff
 		color_stats.append([c, diff])
 	var threshold : float = lerpf(smallest_difference, largest_difference, hue_threshold)
-	var target_sat_val : float = target.s + target.v
 	smallest_difference = 4096
 	for stat in color_stats:
 		if stat[1] <= threshold:
-			var c_sat_val : float = stat[0].s + stat[0].v
-			var diff : float = min(absf(target_sat_val - c_sat_val), 2 - absf(target_sat_val - c_sat_val))
+			var c_luminance : float = stat[0].get_luminance()
+			var diff : float = min(absf(target_luminance - c_luminance), 2 - absf(target_luminance - c_luminance))
 			if diff < smallest_difference:
 				smallest_difference = diff
 				result = stat[0]
