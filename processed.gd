@@ -2,13 +2,14 @@ extends Control
 ## Processed method for Palette Limiting
 ## LettucePie
 
-@export var color_palette : PackedColorArray = [Color.AQUA, Color.CORAL, Color.DARK_GOLDENROD, Color.BEIGE]
+@export var color_palette : PackedColorArray
 @export var image_a : Texture2D
 @export var image_b : Texture2D
 @export var image_c : Texture2D
 
-@onready var color_square_preset : ColorRect = $Vert/Colors/ColorSquare
-@onready var color_square_list : Control = $Vert/Colors
+@onready var color_square_preset : ColorRect = $Vert/Top/Colors/ColorSquare
+@onready var color_square_list : Control = $Vert/Top/Colors
+@onready var hue_toggle : Button = $Vert/Top/HueToggle
 @onready var result_a_node : TextureRect = $Vert/Work/SampleA/AfterImage
 @onready var result_b_node : TextureRect = $Vert/Work/SampleB/AfterImage
 @onready var result_c_node : TextureRect = $Vert/Work/SampleC/AfterImage
@@ -16,10 +17,18 @@ extends Control
 var prioritize_hue : bool = false
 var skip_sat_val : bool = false
 
+#var a_built : bool = false
+#var b_built : bool = false
+#var c_built : bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	build_color_squares()
+	build_images()
+
+
+func build_images():
 	result_a_node.texture = limit_image(image_a, color_palette)
 	result_b_node.texture = limit_image(image_b, color_palette)
 	result_c_node.texture = limit_image(image_c, color_palette)
@@ -28,6 +37,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func toggle_hue(val : bool):
+	prioritize_hue = val
+	build_images()
 
 
 func build_color_squares():
