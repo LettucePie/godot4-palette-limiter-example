@@ -13,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iokk0")
+image_a = ExtResource("2_07txb")
+image_b = ExtResource("3_41eln")
+image_c = ExtResource("4_ccmch")
 
 [node name="Vert" type="VBoxContainer" parent="."]
 layout_mode = 1

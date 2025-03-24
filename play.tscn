@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy0547l7pb3xd"]
+[gd_scene load_steps=4 format=3 uid="uid://dy0547l7pb3xd"]
 
 [ext_resource type="PackedScene" uid="uid://ddn8t0hgyv1fe" path="res://processed.tscn" id="1_etlbe"]
+[ext_resource type="Script" path="res://play.gd" id="1_nqtib"]
 [ext_resource type="PackedScene" uid="uid://5sblpqfj7ler" path="res://shader.tscn" id="2_hme6t"]
 
 [node name="Play" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nqtib")
 
 [node name="Hbox" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -42,9 +44,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Processed" parent="PanelContainer" instance=ExtResource("1_etlbe")]
+process_mode = 4
 visible = false
 layout_mode = 2
 
 [node name="Shader" parent="PanelContainer" instance=ExtResource("2_hme6t")]
+process_mode = 4
 visible = false
 layout_mode = 2
+
+[connection signal="pressed" from="Hbox/Processed" to="." method="button" binds= [0]]
+[connection signal="pressed" from="Hbox/Shader" to="." method="button" binds= [1]]
