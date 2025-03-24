@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://pniokbixwdx6"]
+
+[ext_resource type="Shader" path="res://palette_limiter_DrManatee.gdshader" id="1_s1rro"]
+[ext_resource type="Texture2D" uid="uid://bt7mj0g7gqgrb" path="res://sweetie-16-1x.png" id="2_sx1xv"]
+
+[resource]
+shader = ExtResource("1_s1rro")
+shader_parameter/num_colors = 16
+shader_parameter/PALETTE_TEXTURE = ExtResource("2_sx1xv")

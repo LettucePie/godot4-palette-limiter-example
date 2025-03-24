@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy0547l7pb3xd"]
+
+[ext_resource type="PackedScene" uid="uid://ddn8t0hgyv1fe" path="res://processed.tscn" id="1_etlbe"]
+[ext_resource type="PackedScene" uid="uid://5sblpqfj7ler" path="res://shader.tscn" id="2_hme6t"]
+
+[node name="Play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hbox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.074
+offset_bottom = 0.0480003
+grow_horizontal = 2
+
+[node name="Processed" type="Button" parent="Hbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Processed Method"
+
+[node name="Shader" type="Button" parent="Hbox"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shader Method"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.079
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.192001
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Processed" parent="PanelContainer" instance=ExtResource("1_etlbe")]
+visible = false
+layout_mode = 2
+
+[node name="Shader" parent="PanelContainer" instance=ExtResource("2_hme6t")]
+visible = false
+layout_mode = 2

@@ -1,0 +1,136 @@
+[gd_scene load_steps=7 format=3 uid="uid://5sblpqfj7ler"]
+
+[ext_resource type="Script" path="res://shader.gd" id="1_npqvi"]
+[ext_resource type="Texture2D" uid="uid://dobev1d41cleu" path="res://icon.svg" id="2_jkfsp"]
+[ext_resource type="Texture2D" uid="uid://bt7mj0g7gqgrb" path="res://sweetie-16-1x.png" id="2_xp14g"]
+[ext_resource type="Texture2D" uid="uid://clni6w67jnuoh" path="res://rainbow_test.png" id="3_ms3r2"]
+[ext_resource type="Texture2D" uid="uid://25ucts16ly8p" path="res://submerged.png" id="4_4465m"]
+[ext_resource type="Material" uid="uid://pniokbixwdx6" path="res://palette_limiter_mat.tres" id="4_rdfeo"]
+
+[node name="Shader" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_npqvi")
+palette_strip = ExtResource("2_xp14g")
+
+[node name="Vert" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Colors" type="TextureRect" parent="Vert"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("2_xp14g")
+
+[node name="Work" type="HBoxContainer" parent="Vert"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SampleA" type="VBoxContainer" parent="Vert/Work"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopLabel" type="Label" parent="Vert/Work/SampleA"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Before"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BeforeImage" type="TextureRect" parent="Vert/Work/SampleA"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_jkfsp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotLabel" type="Label" parent="Vert/Work/SampleA"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "After"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AfterImage" type="TextureRect" parent="Vert/Work/SampleA"]
+material = ExtResource("4_rdfeo")
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_jkfsp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SampleB" type="VBoxContainer" parent="Vert/Work"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopLabel" type="Label" parent="Vert/Work/SampleB"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Before"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BeforeImage" type="TextureRect" parent="Vert/Work/SampleB"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_ms3r2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotLabel" type="Label" parent="Vert/Work/SampleB"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "After"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AfterImage" type="TextureRect" parent="Vert/Work/SampleB"]
+material = ExtResource("4_rdfeo")
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_ms3r2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SampleC" type="VBoxContainer" parent="Vert/Work"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopLabel" type="Label" parent="Vert/Work/SampleC"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Before"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BeforeImage" type="TextureRect" parent="Vert/Work/SampleC"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_4465m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BotLabel" type="Label" parent="Vert/Work/SampleC"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "After"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AfterImage" type="TextureRect" parent="Vert/Work/SampleC"]
+material = ExtResource("4_rdfeo")
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_4465m")
+expand_mode = 1
+stretch_mode = 5
